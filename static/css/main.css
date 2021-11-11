@@ -1,0 +1,76 @@
+@keyframes TransitioningBackground {
+    0%{
+       background-position: 1% 0%;
+    }
+    50%{
+       background-position: 99% 100%;
+    }
+    100%{
+       background-position: 1% 0%;
+    }
+ }
+ .img{
+    background-image: url('');
+ }
+ .button{
+    background-color: #1F51FF ;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    margin: 8px;
+    
+ }
+ .leftmove{
+    left: 20px;
+ }
+ .rightmove{
+    right: 20px;
+ }
+ .buttcolor1{
+    overflow: hidden;
+    background-image: linear-gradient(270deg, #C13584,#000000);
+    background-size: 400% 400%;
+    animation: TransitioningBackground 5s ease-in-out infinite;
+    transform: 0.6s;
+ }
+ .buttcolor2{
+    overflow: hidden;
+    background-image: linear-gradient(270deg, #4267B2,#000000);
+    background-size: 400% 400%;
+    animation: TransitioningBackground 5s ease-in-out infinite;
+    transform: 0.6s;
+ }
+ .buttcolor3{
+    overflow: hidden;
+    background-image: linear-gradient(270deg, #1DA1F2,#000000);
+    background-size: 400% 400%;
+    animation: TransitioningBackground 5s ease-in-out infinite;
+    transform: 0.6s;
+ }
+ .buttcolor1:hover{
+    background-image: linear-gradient(to bottom,#000000,#833AB4);
+    transform: scale(1.1);
+ }
+ .buttcolor2:hover{
+    background-image: linear-gradient(to bottom,#000000,#4267B2);
+    transform: scale(1.1);
+ }
+ .buttcolor3:hover{
+    background-image: linear-gradient(to bottom,#000000,#1DA1F2);
+    transform: scale(1.1);
+ }
+ body {
+  background-image: url("https://wallpapercave.com/wp/wp3006038.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.pos{
+  position: absolute;
+  transform: translate(55%,190%)
+}
