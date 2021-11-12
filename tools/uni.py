@@ -17,7 +17,7 @@ pyre = 'python3 sherlock.py'
 def instagramcheck():
     username = form.getvalue('username')
     cmd = pyre + ' --site instagram ' + username
-    subprocess.check_call(cmd,shell=True)
+    p = subprocess.check_call(cmd,shell=True)
     osintdata(username)
     return
 

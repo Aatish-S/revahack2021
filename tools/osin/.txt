@@ -1,3 +1,0 @@
-[1;32m Logged as [
-[1;32m Logged as [
-[1;32m Logged as [0m[1;36mfeka_pretend[0m[1;32m. Target: [0m[1;36mlaz_aats[0m[1;37m [5245407893][0m[1;31m [NOT FOLLOWING][0m [1;37mSearching for users who tagged target... [0m[1;32m Woohoo! We found 21 photos [0m+--------+------------+--------------+------------------+ | Photos | ID | Username | Full Name | +--------+------------+--------------+------------------+ | 18 | 1405765571 | dravyasatish | Dravya Satish | | 1 | 4039328954 | n_0_s_h | 𝔸𝕒𝕣𝕠𝕟 𝕊𝕒𝕟𝕜𝕖𝕤𝕙𝕨𝕒𝕣 | | 1 | 4343514883 | abhishek_k.s | Abhishek | | 1 | 5245407893 | laz_aats | Aatish Satheesan | +--------+------------+--------------+------------------+

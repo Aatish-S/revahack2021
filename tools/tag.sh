@@ -4,7 +4,7 @@ yeet()
     dir=$(pwd)
     username=$1
     cd osintgram
-    output=$(python3 main.py $username --command info)
+    output=$(python3 main.py $username --command wtagged)
     cd ..
     
     echo $output | tee -a $username.txt
