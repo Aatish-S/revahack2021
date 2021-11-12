@@ -7,7 +7,8 @@ yeet()
     output=$(python3 main.py $username --command info)
     cd ..
     
-    echo $output | tee -a $username.txt
+    username="${username}_info"
+    echo $output | tee -a $username.txt  
 }
 
 yeet $in

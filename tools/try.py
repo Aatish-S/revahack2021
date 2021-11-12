@@ -1,5 +1,6 @@
 import subprocess
 
+
 def instagram(a):
     b = 'bash verif.sh ' + a
     p = subprocess.check_call(b,shell=True)
@@ -7,7 +8,6 @@ def instagram(a):
     inde = text_search(j,'VERIFIED')
     busi = text_search(j,'BUSINESS')
     c_inde = inde 
-
 
 
 def text_search(name,text):
@@ -21,5 +21,12 @@ def text_search(name,text):
 
 
 
-b = text_search('laz_aats','VERIFIED')
-print(b)
+b = 'bash verif.sh ' 
+subprocess.check_call(b,shell=True)
+
+
+
+
+#CAN ONLY EXECUTE IF ACCOUNT IS PUBLIC
+c = 'bash tag.sh '
+subprocess.check_call(c,shell=True)

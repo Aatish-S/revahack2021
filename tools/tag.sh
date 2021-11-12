@@ -7,7 +7,10 @@ yeet()
     output=$(python3 main.py $username --command wtagged)
     cd ..
     
+    username="${username}_tag"
     echo $output | tee -a $username.txt
 }
 
 yeet $in
+
+
