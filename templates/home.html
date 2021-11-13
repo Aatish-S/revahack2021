@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
+<img src="static/css/2.jpg">
 <style>
   .pos{
     position: fixed;
@@ -17,18 +19,33 @@
   }
 </style>
 
-<div>
+<div class="img1">
   <div>
     <form method="post">
       {% csrf_token %}
       <div class="d-flex flex -row pos">
         <div>{{ form.as_p }}</div>
-        <div><button type="submit" class="button">Search</button></div>
+        <div><button type="submit" class="button" id="getdata-button" onclick="">Search</button></div>
+        <div>
+        <div id="choice1"></div><br>
+        <div id="choice2"></div><br>
+        <div id="choice3"></div><br>
+        <div id="choice4"></div><br>
       </div>
-      
-      
+      </div>    
     </form>
+    <div id="debug"></div></body> 
   </div>
 </div>
+<script> 
+
+$("#getdata-button").click(function() {
+  $.getJSON('sample.json', function(read_data) {
+      $("#choice1").html(read_data.result[0]);
+      $("#choice2").html(read_data.result[1]);
+      $("#choice3").html(read_data.result[2]);
+      $("#choice4").html(read_data.result[3]);
+    });
+  });
 
 {% endblock content %}

@@ -6,10 +6,11 @@ from django.http import HttpResponse
 import subprocess
 import re
 import json
+from django.core.cache import cache
 
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'output.html'
 
     def get(self,request):
         form = HomeForm()
@@ -19,10 +20,16 @@ class HomeView(TemplateView):
         form = HomeForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data['Username']
-            run(text,request)
-
-        args = {'form': form,'text':text}
+            run(text)
+            cache.clear()
+            
+        args = {'form': form,'text':dictionary}
         return render(request,self.template_name,args)
+
+    def yeet(request):
+        message = "PLEASE ENTER A VALID USERNAME"
+        return HttpResponse(message)
+
 
 
 REAL = 0
@@ -65,7 +72,7 @@ def photo(a):
     
 
 
-def instagram(a,request):
+def instagram(a):
     global PRIVATE
     global VERIFIED_acc
     global FOLLOWERS_acc
@@ -90,15 +97,18 @@ def instagram(a,request):
     FOLLOWERS_acc = int(c)
     if PRIVATE<100:
         photo(a)
-        finder(request)
+        a = ''
+        finder()
+
     else:
-        finder(request)
+        finder()
+        a = ''
 
+global PERSON
 
-def finder(request):
+def finder():
     if VERIFIED_acc == 'True':
         REAL = 1
-    render(request,'home.html',{'verif':VERIFIED_acc})
 
     if BUSINESS_acc == 'True':
         REAL = 1
@@ -109,11 +119,13 @@ def finder(request):
         REAL = 0
     
     if REAL == 1:
-        print('NOT A BOT!')
+        PERSON = 'REAL'
+        js_writing(PERSON)
     else:
-        print('BOTTT!!!!!')
+        PERSON = 'BOT'
+        js_writing(PERSON)
 
-def run(a,request):
+def run(a):
     b = 'bash verif.sh ' + a 
     h = 0
     try:
@@ -121,16 +133,23 @@ def run(a,request):
     except Exception:
         stoopid = 'Invalid Username... Enter a Valid Username'
         h = 1
-        return render(request,'home.html',{'invalid':stoopid})
+        return
         
     if h == 1:
         return
     else:
-        instagram(a,request)
+        instagram(a)
 
     filedel(a)
 
 
+def js_writing(PERSON):
+    global dictionary 
+    dictionary = {"FOLLOWERS":FOLLOWERS_acc,"VERIFIED_PROFILE":VERIFIED_acc,"BUSINESS_PROFILE":BUSINESS_acc,"PERSON":PERSON}
+    a = [FOLLOWERS_acc,VERIFIED_acc,BUSINESS_acc,PERSON]
+    json_object = json.dumps(dictionary,indent = 4)
+    with open("sample.json", "w") as outfile:
+        outfile.write(json_object)
 
 def filedel(name):
     b = 'bash filerem.sh ' + name + '_info.txt'
@@ -138,3 +157,5 @@ def filedel(name):
     subprocess.check_call(b,shell=True)
     subprocess.check_call(c,shell=True)
     return
+
+
