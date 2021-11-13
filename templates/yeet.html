@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   </head>
+
+   <body>
+    <div id="dynamicCheck">
+        <input type="button" value="Create Element" onclick="createNewElement();"/>
+     </div>
+     
+     <div id="newElementId">New inputbox goes here:</div>
+   </body>
+   <script>
+            function createNewElement() {
+	            var txtNewInputBox = document.createElement('div');
+	            txtNewInputBox.innerHTML = "<input type='text' id='newInputBox'>";
+	            document.getElementById("newElementId").appendChild(txtNewInputBox);
+}
+   </script>
+</html>

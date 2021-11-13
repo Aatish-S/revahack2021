@@ -1,31 +1,12 @@
-from django.views.generic import TemplateView
-from pretend.forms import HomeForm
-from django.shortcuts import render
-from django.shortcuts import render
-from django.http import HttpResponse
 import subprocess
+import os
 import re
-import json
-
-
-class HomeView(TemplateView):
-    template_name = 'home.html'
-
-    def get(self,request):
-        form = HomeForm()
-        return render(request,self.template_name,{'form':form})
-
-    def post(self,request):
-        form = HomeForm(request.POST)
-        if form.is_valid():
-            text = form.cleaned_data['Username']
-            run(text,request)
-
-        args = {'form': form,'text':text}
-        return render(request,self.template_name,args)
-
 
 REAL = 0
+
+username = input('Enter username:')
+
+
 
 #SEARCHES FOR INDEX IN FILE
 def text_search(name,text):
@@ -65,7 +46,7 @@ def photo(a):
     
 
 
-def instagram(a,request):
+def instagram(a):
     global PRIVATE
     global VERIFIED_acc
     global FOLLOWERS_acc
@@ -90,15 +71,14 @@ def instagram(a,request):
     FOLLOWERS_acc = int(c)
     if PRIVATE<100:
         photo(a)
-        finder(request)
+        finder()
     else:
-        finder(request)
+        finder()
 
 
-def finder(request):
+def finder():
     if VERIFIED_acc == 'True':
         REAL = 1
-    render(request,'home.html',{'verif':VERIFIED_acc})
 
     if BUSINESS_acc == 'True':
         REAL = 1
@@ -113,23 +93,29 @@ def finder(request):
     else:
         print('BOTTT!!!!!')
 
-def run(a,request):
+def run(a):
     b = 'bash verif.sh ' + a 
     h = 0
     try:
-        subprocess.check_call(b,shell=True)
-    except Exception:
-        stoopid = 'Invalid Username... Enter a Valid Username'
-        h = 1
-        return render(request,'home.html',{'invalid':stoopid})
-        
-    if h == 1:
-        return
-    else:
-        instagram(a,request)
+        # universal_newlines - makes manual decoding of subprocess.stdout unnecessary
+        output = subprocess.check_output(b,stderr=subprocess.STDOUT,universal_newlines=True)
 
-    filedel(a)
+        # Print out command's standard output (elegant)
+        self.textEdit_CommandLineOutput.insertPlainText(output)
+        self.isCommandExecutionSuccessful = True
 
+    except subprocess.CalledProcessError as error:
+        self.isCommandExecutionSuccessful = False
+        h=1
+        print(h)
+        errorMessage = ">>> Error while executing:\n"+ b+ "\n>>> Returned with error:\n" + str(error.output)
+        self.textEdit_CommandLineOutput.append(errorMessage)
+
+    except FileNotFoundError as error:
+        errorMessage = error.strerror
+        h=1
+
+    print(h)
 
 
 def filedel(name):
@@ -138,3 +124,8 @@ def filedel(name):
     subprocess.check_call(b,shell=True)
     subprocess.check_call(c,shell=True)
     return
+
+        
+run(username)
+
+

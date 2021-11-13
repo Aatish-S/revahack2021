@@ -3,8 +3,10 @@ yeet()
 {
     dir=$(pwd)
     username=$1
+    cd pretend
     cd osintgram
     output=$(python3 main.py $username --command info)
+    cd ..
     cd ..
     
     username="${username}_info"
