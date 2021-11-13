@@ -20,7 +20,13 @@ class HomeView(TemplateView):
         form = HomeForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data['Username']
-            run(text)
+            try:
+                run(text)
+            except ValueError:
+                weeeee = 'Invalid Username. Enter a Valid Username'
+                args = {'error':weeeee}
+                return render(request,self.template_name,args)
+
             cache.clear()
             
         args = {'form': form,'text':dictionary}

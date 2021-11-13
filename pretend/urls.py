@@ -23,6 +23,6 @@ from pretend.views import HomeView
 
 urlpatterns = [
     url(r'^$',HomeView.as_view(),name = 'home'),
-    url(r'^/,',HomeView.yeet,name='ValueError')
+    url(r'^',HomeView.yeet,name='ValueError')
     
 ]
